@@ -38,14 +38,17 @@ Scissors beats paper''')
 # option based on a list
 def int_check(question):
     while True:
-        error = "please enter an integer that is 1 or more."
+        error = "Please enter an integer that is 1 or more."
 
         to_check = input(question)
+
         # check for infinite mode
-        if question == "":
+        if to_check == "":
             return "infinite"
+
         try:
             response = int(to_check)
+
             # checks that the number is more than / equal to 1
             if response < 1:
                 print(error)
@@ -62,41 +65,46 @@ def int_check(question):
 mode = "regular"
 rounds_played = 0
 
-rps_list = ["rock", "Paper", "scissors", "xxx"]
+rps_list = {"rock", "paper", "scissors", "xxx"}
 
 
-print(" Rock / Paper / Scissors game ")
+print(" Rock / Paper / Scissors Game ")
 print()
+
 want_instructions = string_checker("Do you want to read the instructions?").lower()
 # checks user enter y or n
 if want_instructions == "yes":
     instruction()
 
-# Ask user for number of rounds / infinite mode
+# Ask user for number of rounds or infinite mode
 num_rounds = int_check("How many rounds would you like? Push <enter> for infinite mode: ")
 
 if num_rounds == "infinite":
     mode = "infinite"
     num_rounds = 5
+
 # Game loop starts here
 while rounds_played < num_rounds:
-    user_choice = string_checker("Choose: ", rps_list)
-    print("you chose", user_choice)
-    rounds_played += 1
 
-    # rounds heading
+    # Rounds headings (based on mode)
     if mode == "infinite":
-        rounds_played = f"\n Round {rounds_played + 1} of {num_rounds} "
+        rounds_heading = f"\n Round {rounds_played + 1} (Infinite Mode) "
     else:
-        rounds_heading = f"\n Round {rounds_played + 1} of {num_rounds}"
+        rounds_heading = f"\n Round {rounds_played + 1} of {num_rounds} "
 
     print(rounds_heading)
     print()
 
+    # get user choice
+    user_choice = string_checker("Choose: ", rps_list)
+    print("you chose", user_choice)
+
+    # If user choice is the exit code, break the loop
     if user_choice == "xxx":
         break
 
-    # if users are in inf mode increase number of rounds
+    rounds_played += 1
+
+    # if users are in infinite mode, increase number of rounds!
     if mode == "infinite":
         num_rounds += 1
-# Game history / Statistics area
