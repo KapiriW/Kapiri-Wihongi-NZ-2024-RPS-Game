@@ -180,11 +180,9 @@ while rounds_played < num_rounds:
     print(f"won: {percent_won:.2f} \t"
           f"Lost: {percent_lost:.2f} \t"
           f"tied: {percent_tied:.2f} \t")
-    show_history = string_checker("Would you want to see the game history?")
+    show_history = string_checker("\nWould you want to see the game history?")
 
     if show_history == "yes":
-        print("\n  game history ")
-
         for item in game_history:
             print(item)
 
